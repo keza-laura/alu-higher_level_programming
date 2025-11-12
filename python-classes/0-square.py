@@ -1,9 +1,17 @@
 #!/usr/bin/python3
 
-"""This module defines an empty class Square."""
+"""Square Class.
+This module contains an empty class that defines a square.
+Usage Example:
+    Square = __import__('0-square').Square
+
+    my_square = Square()
+    print(type(my_square))
+    print(my_square.__dict__)
+"""
+
 
 class Square:
-    """This class defines a square."""
+    """Defines the blueprint of a square"""
 
     pass
-
