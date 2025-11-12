@@ -1,18 +1,19 @@
 #!/usr/bin/python3
-"""This module defines a class Square."""
+
+"""Square Class.
+This module contains a class that defines a square.
+Usage Example:
+    Square = __import__('6-square').Square
+    my_square = Square(3)
+    print(type(my_square))
+    print(my_square.__dict__)
+"""
 
 
 class Square:
-    """This class defines a square by its size and position."""
+    """Defines a square with size and position attributes."""
 
     def __init__(self, size=0, position=(0, 0)):
-        """Initialize a new Square instance.
-
-        Args:
-            size (int): The size of the square (default is 0).
-            position (tuple): The position (x, y) of the square
-                (default is (0, 0)).
-        """
         self.size = size
         self.position = position
 
@@ -38,25 +39,28 @@ class Square:
     @position.setter
     def position(self, value):
         """Set the position of the square with validation."""
-        if (not isinstance(value, tuple)
-                or len(value) != 2
-                or not all(isinstance(num, int) for num in value)
-                or not all(num >= 0 for num in value)):
+        if (
+            not isinstance(value, tuple) or
+            len(value) != 2 or
+            not all(isinstance(num, int) and num >= 0 for num in value)
+        ):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
     def area(self):
-        """Return the current square area."""
+        """Calculate and return the area of the square."""
         return self.__size ** 2
 
     def my_print(self):
-        """Print the square with the character # using position."""
+        """Print the square using '#' characters, considering position."""
         if self.__size == 0:
-            print("")
+            print()
             return
 
+        # Print vertical offset
         for _ in range(self.__position[1]):
-            print("")
+            print()
 
+        # Print each line of the square with horizontal offset
         for _ in range(self.__size):
             print(" " * self.__position[0] + "#" * self.__size)
