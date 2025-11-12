@@ -1,27 +1,33 @@
 #!/usr/bin/python3
-"""Defines a class Rectangle with instance tracking, comparison, and square creation."""
+
+"""Rectangle Class.
+
+This module contains an empty class that defines a rectangle.
+
+Usage Example:
+
+    Rectangle = __import__('0-rectangle').Rectangle
+
+    my_rectangle = Rectangle()
+    print(type(my_rectangle))
+    print(my_rectangle.__dict__)
+"""
 
 
 class Rectangle:
-    """Represents a rectangle."""
+    """Defines a rectangle with width, height, and utility methods."""
 
-    number_of_instances = 0  # Tracks active instances
-    print_symbol = "#"       # Symbol for string representation
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """Initialize a new Rectangle instance.
-
-        Args:
-            width (int): Rectangle width (default 0).
-            height (int): Rectangle height (default 0).
-        """
         self.width = width
         self.height = height
-        type(self).number_of_instances += 1
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
-        """Retrieve the width."""
+        """Retrieve the width of the rectangle."""
         return self.__width
 
     @width.setter
@@ -35,7 +41,7 @@ class Rectangle:
 
     @property
     def height(self):
-        """Retrieve the height."""
+        """Retrieve the height of the rectangle."""
         return self.__height
 
     @height.setter
@@ -48,66 +54,44 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        """Return the rectangle area."""
+        """Return the area of the rectangle."""
         return self.__width * self.__height
 
     def perimeter(self):
-        """Return the rectangle perimeter, or 0 if width or height is 0."""
+        """Return the perimeter of the rectangle."""
         if self.__width == 0 or self.__height == 0:
             return 0
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Return a string representation using print_symbol."""
+        """Return the string representation using print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
-        symbol = str(self.print_symbol)
-        lines = [
-            symbol * self.__width
-            for _ in range(self.__height)
-        ]
-        return "\n".join(lines)
+        return "\n".join(
+            str(self.print_symbol) * self.__width
+            for _ in range(self.__height))
 
     def __repr__(self):
-        """Return a string that can recreate a new instance using eval()."""
+        """Return a string that recreates the instance."""
         return f"Rectangle({self.__width}, {self.__height})"
 
     def __del__(self):
-        """Print a message when an instance is deleted and decrement counter."""
+        """Print message and decrement instance count on deletion."""
         print("Bye rectangle...")
-        type(self).number_of_instances -= 1
+        Rectangle.number_of_instances -= 1
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
-        """Return the biggest rectangle based on the area.
-
-        Args:
-            rect_1 (Rectangle): First rectangle.
-            rect_2 (Rectangle): Second rectangle.
-
-        Raises:
-            TypeError: If rect_1 or rect_2 is not a Rectangle.
-
-        Returns:
-            Rectangle: The rectangle with the bigger area, or rect_1 if equal.
-        """
+        """Return the rectangle with the bigger area."""
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-
         if rect_1.area() >= rect_2.area():
             return rect_1
         return rect_2
 
     @classmethod
     def square(cls, size=0):
-        """Return a new Rectangle instance with width == height == size.
-
-        Args:
-            size (int): Size of the square sides (default 0).
-
-        Returns:
-            Rectangle: New rectangle instance with width and height equal to size.
-        """
+        """Return a new Rectangle instance with width == height == size."""
         return cls(size, size)
