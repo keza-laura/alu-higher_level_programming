@@ -6,7 +6,7 @@ This module defines the BaseGeometry class with an unimplemented area method.
 
 class BaseGeometry:
     """
-    A class representing geometric shapes.  
+    A class representing geometric shapes.
     Includes an area method to be implemented by subclasses.
     """
 
