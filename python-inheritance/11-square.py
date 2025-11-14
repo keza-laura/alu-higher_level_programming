@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module 10-square.
+"""Module 11-square.
 Creates a Square class.
 """
 
@@ -27,7 +27,7 @@ class Square(Rectangle):
         self.__size = size
 
     def __str__(self):
-        return super().__str__()
+        return str("[Square] {}/{}".format(self.__size, self.__size))
 
     def area(self):
         """Computes the area of a Square instance.
