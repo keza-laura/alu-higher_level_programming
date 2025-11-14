@@ -18,4 +18,3 @@ def is_same_class(obj, a_class):
         bool: True if type(obj) is exactly a_class, otherwise False.
     """
     return type(obj) is a_class
-
